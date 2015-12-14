@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image upload</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="application/javascript" src="js/main.js"></script>
+    <script type="application/javascript" src="js/image-store.js"></script>
+    <script type="application/javascript" src="js/image-list.js"></script>
+    <script type="application/javascript" src="js/image-preview.js"></script>
+    <script type="application/javascript" src="js/upload-form.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="left-sidebar">
+        <div id="image-list" class="image-list">
+            <div class="pagination" id="show-previous">Previous {itemsPerPage} images</div>
+            <div id="image-list-container"></div>
+            <div class="pagination" id="show-next">Next {itemsPerPage} images</div>
+        </div>
+    </div>
+    <div class="right-sidebar">
+        <div class="big-preview" id="big-preview"></div>
+        <div class="upload-form" id="upload-form"></div>
+    </div>
+</div>
+
+</body>
+</html>

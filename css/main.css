@@ -1,0 +1,137 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html, .container {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+}
+
+
+
+
+.left-sidebar, .right-sidebar {
+    float: left;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+}
+
+.left-sidebar {
+    width: 140px;
+}
+
+.image-list .pagination {
+    display: none;
+    background-color: darkgray;
+    padding: 5px 10px 5px 10px;
+}
+
+.image-small {
+    padding: 5px 10px 5px 10px;
+}
+
+.image-small:hover {
+    cursor: pointer;
+}
+
+.image-small.selected {
+    background-color: lightsteelblue;
+}
+
+
+
+.image-preview img {
+    max-width: 700px;
+    max-height: 700px;
+}
+
+
+
+.right-sidebar {
+    display: flex;
+    height: 100%;
+    width: 20%;
+    padding: 20px;
+    overflow: auto;
+
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+    flex-direction: column;
+}
+
+.right-sidebar .head {
+    padding: 0 0 20px 0;
+    border-bottom: 2px solid gray;
+    margin-bottom: 20px;
+}
+
+.right-sidebar .subject {
+    margin-bottom: 20px;
+    font-size: large;
+}
+
+.right-sidebar .subject span {
+    font-weight: bold;
+}
+
+.right-sidebar .big-preview {
+    flex: 9;
+}
+
+.right-sidebar .upload-form {
+    flex: 1;
+}
+
+
+
+
+
+.opacity-animation {
+    animation: opacity-animation 1s;
+    -webkit-animation: opacity-animation 1s;
+    -moz-animation: opacity-animation 1s;
+    -o-animation: opacity-animation 1s;
+}
+
+@keyframes opacity-animation {
+    0% {
+        opacity: 0;
+        -khtml-opacity: 0;
+        -moz-opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    100% {
+        opacity: 1;
+        -khtml-opacity: 1;
+        -moz-opacity: 1;
+        filter: alpha(opacity=100);
+    }
+}
+
+@-webkit-keyframes opacity-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
