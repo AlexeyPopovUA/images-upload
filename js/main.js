@@ -3,7 +3,7 @@
 
     window.onload = function () {
         ImageStore.initialize({
-            itemsPerPage: 10
+            itemsPerPage: 5
         });
 
         ImageList.initialize({

@@ -25,7 +25,7 @@ window.ImageStore = (function () {
         /**
          * This number of images will be shown in the image list
          */
-        itemsPerPage: 5,
+        itemsPerPage: 10,
 
         /**
          * Returns current page data
