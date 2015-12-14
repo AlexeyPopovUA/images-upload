@@ -95,7 +95,7 @@ window.ImageList = (function () {
         },
 
         /**
-         * Returns view content for brief email rendering mode
+         * This is a template for list items
          * @returns {string}
          */
         itemTemplate: '' +
@@ -123,14 +123,13 @@ window.ImageList = (function () {
         },
 
         /**
-         * Creates email item content and adds it to the list container
+         * Creates item html and adds it to the list container
          * @param item {File}
          */
         renderItem: function (item) {
             var reader  = new FileReader();
 
             reader.onloadend = function () {
-                //listItem.querySelector("img").src = reader.result;
                 var listItem = listContainer.querySelector('.image-small[data-itemId="' + item.name + '"] img');
                 if (listItem) {
                     listItem.src = reader.result;

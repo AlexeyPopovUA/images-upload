@@ -2,7 +2,7 @@ window.ImagePreview = (function () {
     "use strict";
 
     /**
-     * Contains link to the email detailed information container
+     * Contains link to the preview container
      */
     var previewContainer;
 
@@ -22,15 +22,15 @@ window.ImagePreview = (function () {
             this.clear();
         },
         /**
-         * Removes content from the email container
+         * Removes content from the container
          */
         clear: function () {
             previewContainer.innerHTML = "Please select any image";
         },
 
         /**
-         * Opens detailed view of email item
-         * @param item {window.EmailItem}
+         * Creates preview item
+         * @param item {File}
          */
         render: function (item) {
             this.clear();
