@@ -20,7 +20,7 @@
             onFileUploadChange: function (event) {
                 ImagePreview.clear();
                 ImageStore.loadData(event.target.files);
-                ImageList.renderItems(ImageStore.getData(), false);
+                ImageList.renderItems(ImageStore.getCurrentPageData(), false);
             }
         });
     }

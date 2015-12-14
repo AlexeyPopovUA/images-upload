@@ -1,3 +1,6 @@
+/**
+ * This module is responsible for big image preview
+ */
 window.ImagePreview = (function () {
     "use strict";
 
@@ -6,6 +9,13 @@ window.ImagePreview = (function () {
      */
     var previewContainer;
 
+    /**
+     * This method returns compiled template
+     * @param item {File}
+     * @param template {String}
+     * @returns {String}
+     * @private
+     */
     function _generateImageItem(item, template) {
         var imageSrc = URL.createObjectURL(item);
         var compiledTemplate = template;
@@ -21,6 +31,7 @@ window.ImagePreview = (function () {
             previewContainer = document.querySelector("#big-preview");
             this.clear();
         },
+
         /**
          * Removes content from the container
          */
@@ -38,6 +49,9 @@ window.ImagePreview = (function () {
             previewContainer.innerHTML = _generateImageItem(item, this.previewTemplate);
         },
 
+        /**
+         * Template for big image preview
+         */
         previewTemplate: '' +
             '<div class="image-preview opacity-animation">' +
                 '<img src="{imageSrc}"/>'+

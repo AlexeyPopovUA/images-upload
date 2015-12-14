@@ -1,36 +1,47 @@
+/**
+ * This class is responsible for image list presentation
+ */
 window.ImageList = (function () {
     "use strict";
 
     /**
      * Generates list item
      * @param item {File}
-     * @param template
+     * @param template {String}
+     * @return {String}
      * @private
      */
     function _generateImageItem(item, template) {
         var itemId = item.name;
-        var imageSrc = URL.createObjectURL(item);
         var compiledtemplate = template;
 
         compiledtemplate = compiledtemplate.replace("{itemId}", itemId);
-        //compiledtemplate = compiledtemplate.replace("{imageSrc}", imageSrc);
 
         return compiledtemplate;
     }
 
-    var store = null;
+    /**
+     * Contains link to the store
+     */
+    var store;
 
     /**
      * Contains link to the list container
+     * @type HTMLElement
      */
     var listContainer;
-    var previous;
-    var next;
 
     /**
-     * Contains selected itemId
+     * Link to the "Previous" button
+     * @type HTMLElement
      */
-    var selection;
+    var previous;
+
+    /**
+     * Link to the "Next" button
+     * @type HTMLElement
+     */
+    var next;
 
     /**
      * @type Function
@@ -40,7 +51,7 @@ window.ImageList = (function () {
     //public properties
     return {
         /**
-         * Creates event listeners and starts data loading and rendering
+         * Creates event listeners and initializes property values
          * @param config {{store: window.ImageStore, onSelection: Function}}
          */
         initialize: function (config) {
@@ -73,19 +84,14 @@ window.ImageList = (function () {
 
             previous.addEventListener("click", function (event) {
                 if (store.hasPreviousPage()) {
-                    store.loadPreviousPage();
-                    me.renderItems(store.getData(), false);
-
+                    me.renderItems(store.loadPreviousPage(), false);
                     me.refreshPaginationButtonsVisibility();
                 }
-
             });
 
             next.addEventListener("click", function (event) {
                 if (store.hasNextPage()) {
-                    store.loadNextPage();
-                    me.renderItems(store.getData(), false);
-
+                    me.renderItems(store.loadNextPage(), false);
                     me.refreshPaginationButtonsVisibility();
                 }
             });
@@ -137,6 +143,7 @@ window.ImageList = (function () {
             };
 
             reader.readAsDataURL(item);
+
             listContainer.insertAdjacentHTML("beforeend", _generateImageItem(item, this.itemTemplate));
         },
 
@@ -150,7 +157,6 @@ window.ImageList = (function () {
             if (!element.classList.contains("selected")) {
                 this.clearSelection();
                 element.classList.add("selected");
-                selection = element.getAttribute("data-itemId");
 
                 if (_onItemSelection) {
                     _onItemSelection(item);
@@ -167,16 +173,6 @@ window.ImageList = (function () {
             for (var i = 0, len = selected.length; i < len; i++) {
                 selected[i].classList.remove("selected");
             }
-
-            selection = null;
-        },
-
-        /**
-         * Returns selection Id
-         * @returns {*}
-         */
-        getSelection: function () {
-            return selection;
         },
 
         /**
@@ -189,6 +185,9 @@ window.ImageList = (function () {
             }
         },
 
+        /**
+         * This method refreshes visibility of "Previous" an "Next" buttons
+         */
         refreshPaginationButtonsVisibility: function () {
             if (previous && !store.hasPreviousPage()) {
                 previous.style.display = "none";

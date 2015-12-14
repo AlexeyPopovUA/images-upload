@@ -1,12 +1,19 @@
+/**
+ * This module contains data and methods to work with it
+ */
 window.ImageStore = (function () {
     "use strict";
 
     /**
-     * Contains original item list. Can be sorted
+     * Contains original item list
      * @type {File[]}
      */
     var items = [];
 
+    /**
+     * Current page
+     * @type {number}
+     */
     var currentPage = 0;
 
     //public members
@@ -15,13 +22,16 @@ window.ImageStore = (function () {
             this.itemsPerPage = config.itemsPerPage ? config.itemsPerPage : this.itemsPerPage;
         },
 
+        /**
+         * This number of images will be shown in the image list
+         */
         itemsPerPage: 5,
 
         /**
-         * Returns filtered data
+         * Returns current page data
          * @returns {File[]}
          */
-        getData: function () {
+        getCurrentPageData: function () {
             var from = currentPage * this.itemsPerPage;
             var to = from + this.itemsPerPage;
 
@@ -43,12 +53,15 @@ window.ImageStore = (function () {
             return null;
         },
 
+        /**
+         * Removes all data from the store
+         */
         clearData: function () {
             items.splice(0, items.length);
         },
 
         /**
-         *
+         * Loads File List object
          * @param data {FileList}
          */
         loadData: function (data) {
@@ -61,7 +74,7 @@ window.ImageStore = (function () {
         },
 
         hasNextPage: function () {
-            return items.length > (currentPage * this.itemsPerPage + this.getData().length);
+            return items.length > (currentPage * this.itemsPerPage + this.getCurrentPageData().length);
         },
 
         hasPreviousPage: function () {
@@ -72,12 +85,16 @@ window.ImageStore = (function () {
             if (this.hasNextPage()) {
                 currentPage++;
             }
+
+            return this.getCurrentPageData();
         },
 
         loadPreviousPage: function () {
             if (currentPage > 0) {
                 currentPage--;
             }
+
+            return this.getCurrentPageData();
         }
     }
 })();
