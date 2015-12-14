@@ -95,6 +95,14 @@ window.ImageStore = (function () {
             }
 
             return this.getCurrentPageData();
+        },
+
+        /**
+         * Returns current page number
+         * @returns {number}
+         */
+        getCurrentPageNumber: function () {
+            return currentPage;
         }
     }
 })();

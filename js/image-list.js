@@ -85,19 +85,19 @@ window.ImageList = (function () {
             previous.addEventListener("click", function (event) {
                 if (store.hasPreviousPage()) {
                     me.renderItems(store.loadPreviousPage(), false);
-                    me.refreshPaginationButtonsVisibility();
                 }
             });
 
             next.addEventListener("click", function (event) {
                 if (store.hasNextPage()) {
                     me.renderItems(store.loadNextPage(), false);
-                    me.refreshPaginationButtonsVisibility();
                 }
             });
 
             previous.innerHTML = previous.innerHTML.replace("{itemsPerPage}", store.itemsPerPage);
             next.innerHTML = next.innerHTML.replace("{itemsPerPage}", store.itemsPerPage);
+
+            this.refreshPageCount();
         },
 
         /**
@@ -108,6 +108,8 @@ window.ImageList = (function () {
             '<div class="image-small opacity-animation" data-itemId="{itemId}">' +
                 '<img src="images/spinner.gif" width="100px"/>' +
             '</div>',
+
+        pageNumberTemplate: 'Current page is {currentPage}',
 
         /**
          * This method renders list items with separators
@@ -126,6 +128,7 @@ window.ImageList = (function () {
             }
 
             this.refreshPaginationButtonsVisibility();
+            this.refreshPageCount();
         },
 
         /**
@@ -200,6 +203,15 @@ window.ImageList = (function () {
             } else {
                 next.style.display = "block";
             }
+        },
+
+        /**
+         * Refreshes page counter
+         */
+        refreshPageCount: function () {
+            var currentPageElement = document.querySelector("#image-list #current-page");
+
+            currentPageElement.innerHTML = this.pageNumberTemplate.replace("{currentPage}", store.getCurrentPageNumber());
         }
     }
 })();
