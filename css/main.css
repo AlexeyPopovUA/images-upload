@@ -33,19 +33,6 @@ body, html, .container {
     width: 140px;
 }
 
-.image-list .pagination {
-    display: none;
-    background-color: darkgray;
-    padding: 5px 10px 5px 10px;
-    cursor: pointer;
-}
-
-.image-list .current-page {
-    background-color: darkgray;
-    padding: 5px 10px 5px 10px;
-    margin-bottom: 5px;
-}
-
 .image-small {
     padding: 5px 10px 5px 10px;
 }

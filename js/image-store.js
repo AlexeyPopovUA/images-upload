@@ -74,12 +74,12 @@ window.ImageStore = (function () {
         },
 
         hasNextPage: function () {
-            return items.length > (currentPage * this.itemsPerPage + this.getCurrentPageData().length);
+            return (((items.length / this.itemsPerPage) >> 0) + 1) > currentPage;
         },
 
-        hasPreviousPage: function () {
+        /*hasPreviousPage: function () {
             return currentPage > 0;
-        },
+        },*/
 
         loadNextPage: function () {
             if (this.hasNextPage()) {
@@ -89,13 +89,13 @@ window.ImageStore = (function () {
             return this.getCurrentPageData();
         },
 
-        loadPreviousPage: function () {
+        /*loadPreviousPage: function () {
             if (currentPage > 0) {
                 currentPage--;
             }
 
             return this.getCurrentPageData();
-        },
+        },*/
 
         /**
          * Returns current page number

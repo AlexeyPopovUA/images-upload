@@ -82,22 +82,14 @@ window.ImageList = (function () {
                 }
             });
 
-            previous.addEventListener("click", function (event) {
-                if (store.hasPreviousPage()) {
-                    me.renderItems(store.loadPreviousPage(), false);
+            //TODO Investigate is it possible to use canvas + it's ability to contain a huge amount of photos
+            document.querySelector(".left-sidebar").addEventListener("scroll", function (event) {
+                if (event.target.scrollTop + event.target.clientHeight > 0.9 * event.target.scrollHeight) {
+                    if (store.hasNextPage()) {
+                        me.renderItems(store.loadNextPage(), true);
+                    }
                 }
             });
-
-            next.addEventListener("click", function (event) {
-                if (store.hasNextPage()) {
-                    me.renderItems(store.loadNextPage(), false);
-                }
-            });
-
-            previous.innerHTML = previous.innerHTML.replace("{itemsPerPage}", store.itemsPerPage);
-            next.innerHTML = next.innerHTML.replace("{itemsPerPage}", store.itemsPerPage);
-
-            this.refreshPageCount();
         },
 
         /**
@@ -126,9 +118,6 @@ window.ImageList = (function () {
             for (var j = 0, itemsLength = itemlist.length; j < itemsLength; j++) {
                 me.renderItem(itemlist[j]);
             }
-
-            this.refreshPaginationButtonsVisibility();
-            this.refreshPageCount();
         },
 
         /**
@@ -186,32 +175,6 @@ window.ImageList = (function () {
             for (var i = 0, elemLen = imageElements.length; i < elemLen; i++) {
                 listContainer.removeChild(imageElements[i]);
             }
-        },
-
-        /**
-         * This method refreshes visibility of "Previous" an "Next" buttons
-         */
-        refreshPaginationButtonsVisibility: function () {
-            if (previous && !store.hasPreviousPage()) {
-                previous.style.display = "none";
-            } else {
-                previous.style.display = "block";
-            }
-
-            if (next && !store.hasNextPage()) {
-                next.style.display = "none";
-            } else {
-                next.style.display = "block";
-            }
-        },
-
-        /**
-         * Refreshes page counter
-         */
-        refreshPageCount: function () {
-            var currentPageElement = document.querySelector("#image-list #current-page");
-
-            currentPageElement.innerHTML = this.pageNumberTemplate.replace("{currentPage}", store.getCurrentPageNumber());
         }
     }
 })();
