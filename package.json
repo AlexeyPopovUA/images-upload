@@ -1,0 +1,28 @@
+{
+  "name": "images-upload",
+  "version": "1.0.0",
+  "description": "UI for image uploader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeyPopovUA/images-upload.git"
+  },
+  "keywords": [
+    "images-upload"
+  ],
+  "author": "Oleksii Popov",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AlexeyPopovUA/images-upload/issues"
+  },
+  "homepage": "https://github.com/AlexeyPopovUA/images-upload#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  },
+  "dependencies": {
+    "google-closure-compiler": "^20160208.7.0"
+  }
+}
